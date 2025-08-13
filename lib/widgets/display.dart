@@ -19,6 +19,7 @@ class Display extends StatelessWidget {
         style: const TextStyle(
           fontSize: 48,
           fontWeight: FontWeight.bold,
+          color: Colors.white,
         ),
       ),
     );

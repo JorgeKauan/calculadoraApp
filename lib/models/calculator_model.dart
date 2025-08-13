@@ -1,11 +1,17 @@
 // lib/models/calculator_model.dart
+import 'dart:math' as math;
 class CalculatorModel {
   String _displayValue = '0';
   String _storedValue = '0';
   String _operation = '';
   bool _waitingForSecondOperand = false;
+  final List<String> _history = [];
 
   String get displayValue => _displayValue;
+  List<String> get history => List.unmodifiable(_history);
+  void clearHistory() {
+    _history.clear();
+  }
 
   void handleButtonPress(String buttonText) {
     if (buttonText == 'C') {
@@ -91,14 +97,118 @@ class CalculatorModel {
       case '÷':
         result = first / second;
         break;
+      case '^':
+        result = math.pow(first, second).toDouble();
+        break;
     }
 
-    _displayValue = result.toString();
-    if (_displayValue.endsWith('.0')) {
-      _displayValue = _displayValue.substring(0, _displayValue.length - 2);
+    String resultString = result.toString();
+    if (resultString.endsWith('.0')) {
+      resultString = resultString.substring(0, resultString.length - 2);
     }
+    _history.add('$_storedValue $_operation $_displayValue = $resultString');
+    _displayValue = resultString;
 
     _operation = '';
     _waitingForSecondOperand = false;
   }
+}
+
+class ScientificCalculatorModel extends CalculatorModel {
+  void handleScientificButton(String buttonText) {
+    if (buttonText == 'sin' || buttonText == 'cos' || buttonText == 'tan' || buttonText == 'log' || buttonText == 'ln') {
+      _applyUnaryFunction(buttonText);
+      return;
+    }
+    if (buttonText == '√') {
+      _applySqrt();
+      return;
+    }
+    if (buttonText == 'x²') {
+      _applySquare();
+      return;
+    }
+    if (buttonText == 'π') {
+      _setConstant(3.1415926535897932);
+      return;
+    }
+    if (buttonText == 'e') {
+      _setConstant(2.718281828459045);
+      return;
+    }
+    if (buttonText == '±') {
+      _toggleSign();
+      return;
+    }
+    if (buttonText == '^') {
+      _setOperation('^');
+      return;
+    }
+    if (buttonText == '%') {
+      _applyPercent();
+      return;
+    }
+    handleButtonPress(buttonText);
+  }
+
+  void _applyUnaryFunction(String fn) {
+    final value = double.tryParse(displayValue) ?? 0.0;
+    double result;
+    switch (fn) {
+      case 'sin':
+        result = math.sin(_toRadians(value));
+        break;
+      case 'cos':
+        result = math.cos(_toRadians(value));
+        break;
+      case 'tan':
+        result = math.tan(_toRadians(value));
+        break;
+      case 'log':
+        result = value <= 0 ? double.nan : math.log(value) / math.ln10;
+        break;
+      case 'ln':
+        result = value <= 0 ? double.nan : math.log(value);
+        break;
+      default:
+        result = value;
+    }
+    _setDisplay(result);
+  }
+
+  void _applySqrt() {
+    final value = double.tryParse(displayValue) ?? 0.0;
+    final result = value < 0 ? double.nan : math.sqrt(value);
+    _setDisplay(result);
+  }
+
+  void _applySquare() {
+    final value = double.tryParse(displayValue) ?? 0.0;
+    _setDisplay(value * value);
+  }
+
+  void _setConstant(double constant) {
+    _setDisplay(constant);
+  }
+
+  void _toggleSign() {
+    final value = double.tryParse(displayValue) ?? 0.0;
+    _setDisplay(-value);
+  }
+
+  void _applyPercent() {
+    final value = double.tryParse(displayValue) ?? 0.0;
+    _setDisplay(value / 100.0);
+  }
+
+  void _setDisplay(double value) {
+    var text = value.toString();
+    if (text.endsWith('.0')) {
+      text = text.substring(0, text.length - 2);
+    }
+    _displayValue = text;
+    _waitingForSecondOperand = false;
+  }
+
+  double _toRadians(double deg) => deg * 3.1415926535897932 / 180.0;
 }

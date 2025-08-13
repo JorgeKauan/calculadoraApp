@@ -5,12 +5,14 @@ class CalculatorButton extends StatelessWidget {
   final String text;
   final Function(String) onPressed;
   final Color color;
+  final IconData? icon;
 
   const CalculatorButton({
     super.key,
     required this.text,
     required this.onPressed,
     this.color = Colors.grey,
+    this.icon,
   });
 
   @override
@@ -24,14 +26,20 @@ class CalculatorButton extends StatelessWidget {
         padding: const EdgeInsets.all(20),
       ),
       onPressed: () => onPressed(text),
-      child: Text(
-        text,
-        style: const TextStyle(
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
-        ),
-      ),
+      child: icon == null
+          ? Text(
+              text,
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            )
+          : Icon(
+              icon,
+              color: Colors.white,
+              size: 28,
+            ),
     );
   }
 }
