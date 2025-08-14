@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/calculator_model.dart';
 import '../widgets/calculator_button.dart';
 import 'calculator_screen.dart';
+import 'scientific_calculator_screen.dart';
 
 class MeasureCalculatorScreen extends StatefulWidget {
   const MeasureCalculatorScreen({super.key});
@@ -273,14 +274,20 @@ class _MeasureCalculatorScreenState extends State<MeasureCalculatorScreen> {
                         );
                       },
                     );
-                    if (!mounted) return;
-                    if (choice == 'common') {
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          builder: (_) => const CalculatorScreen(),
-                        ),
-                      );
-                    }
+                                         if (!mounted) return;
+                     if (choice == 'common') {
+                       Navigator.of(context).pushReplacement(
+                         MaterialPageRoute(
+                           builder: (_) => const CalculatorScreen(),
+                         ),
+                       );
+                     } else if (choice == 'scientific') {
+                       Navigator.of(context).pushReplacement(
+                         MaterialPageRoute(
+                           builder: (_) => const ScientificCalculatorScreen(),
+                         ),
+                       );
+                     }
                   },
                   color: Colors.deepPurple,
                 ),
