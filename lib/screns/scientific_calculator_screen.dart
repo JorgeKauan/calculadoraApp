@@ -4,6 +4,7 @@ import '../widgets/calculator_button.dart';
 import '../models/calculator_model.dart';
 import '../utils/constants.dart';
 import 'calculator_screen.dart';
+import 'measure_calculator_screen.dart';
 
 class ScientificCalculatorScreen extends StatefulWidget {
   const ScientificCalculatorScreen({super.key});
@@ -72,6 +73,11 @@ class _ScientificCalculatorScreenState extends State<ScientificCalculatorScreen>
                                     title: const Text('Comum', style: TextStyle(color: Colors.white)),
                                     onTap: () => Navigator.pop(context, 'common'),
                                   ),
+                                  ListTile(
+                                    leading: const Icon(Icons.straighten, color: Colors.white),
+                                    title: const Text('Medidas', style: TextStyle(color: Colors.white)),
+                                    onTap: () => Navigator.pop(context, 'measure'),
+                                  ),
                                 ],
                               ),
                             );
@@ -82,6 +88,12 @@ class _ScientificCalculatorScreenState extends State<ScientificCalculatorScreen>
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (_) => const CalculatorScreen(),
+                            ),
+                          );
+                        } else if (choice == 'measure') {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (_) => const MeasureCalculatorScreen(),
                             ),
                           );
                         }
