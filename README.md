@@ -5,12 +5,16 @@ Uma calculadora completa desenvolvida em Flutter com múltiplas funcionalidades:
 ## 🚀 Funcionalidades
 
 ### 📱 Calculadora Comum
+![Calculadora Comum](assets/calculator_common.png)
+
 - Operações básicas: adição, subtração, multiplicação, divisão
 - Histórico de cálculos com opção de limpar
 - Interface limpa e intuitiva
 - Botão de backspace para corrigir erros
 
 ### 🔬 Calculadora Científica
+![Calculadora Científica](assets/calculator_scientific.png)
+
 - **Funções trigonométricas**: sin, cos, tan
 - **Logaritmos**: log (base 10), ln (base e)
 - **Potenciação**: x², x^y
@@ -20,6 +24,8 @@ Uma calculadora completa desenvolvida em Flutter com múltiplas funcionalidades:
 - **Operações avançadas**: ± (mudança de sinal), % (porcentagem)
 
 ### 📏 Calculadora de Medidas
+![Calculadora de Medidas](assets/calculator_measures.png)
+
 - **Comprimento**: mm, cm, m, km, in, ft, yd, mi
 - **Peso**: mg, g, kg, t, oz, lb
 - **Volume**: ml, l, gal, qt, pt, cup
@@ -27,7 +33,9 @@ Uma calculadora completa desenvolvida em Flutter com múltiplas funcionalidades:
 - Conversão em tempo real
 - Interface intuitiva com dropdowns
 
-## 🎨 Interface
+## 📸 Capturas de Tela
+
+### 🎨 Interface
 
 - **Tema escuro** moderno e elegante
 - **Navegação fluida** entre as três calculadoras
