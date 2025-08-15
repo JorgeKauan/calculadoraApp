@@ -208,44 +208,44 @@ class _MeasureCalculatorScreenState extends State<MeasureCalculatorScreen> {
              child: GridView.count(
                crossAxisCount: 3,
                padding: const EdgeInsets.all(12),
-               mainAxisSpacing: 8,
-               crossAxisSpacing: 8,
+               mainAxisSpacing: 10,
+               crossAxisSpacing: 10,
               children: [
-                // Numbers 1-9
-                for (int i = 1; i <= 9; i++)
-                  CalculatorButton(
-                    text: i.toString(),
-                    onPressed: _onNumberPressed,
-                    color: Colors.grey[700]!,
-                  ),
-                
-                // Bottom row
-                CalculatorButton(
-                  text: 'C',
-                  onPressed: (_) => _onClear(),
-                  color: Colors.red,
-                ),
-                CalculatorButton(
-                  text: '0',
-                  onPressed: _onNumberPressed,
-                  color: Colors.grey[700]!,
-                ),
-                CalculatorButton(
-                  text: '⌫',
-                  onPressed: (_) => _onBackspace(),
-                  color: Colors.orange,
-                ),
-                
-                // Decimal and Switch
-                CalculatorButton(
-                  text: '.',
-                  onPressed: (_) => _onDecimal(),
-                  color: Colors.grey[700]!,
-                ),
-                CalculatorButton(
-                  text: 'SW',
-                  icon: Icons.calculate,
-                  onPressed: (_) async {
+                                 // Numbers 1-9
+                 for (int i = 1; i <= 9; i++)
+                   CalculatorButton(
+                     text: i.toString(),
+                     onPressed: _onNumberPressed,
+                     color: Colors.grey[700]!,
+                   ),
+                 
+                 // Bottom row
+                 CalculatorButton(
+                   text: 'C',
+                   onPressed: (_) => _onClear(),
+                   color: Colors.red,
+                 ),
+                 CalculatorButton(
+                   text: '0',
+                   onPressed: _onNumberPressed,
+                   color: Colors.grey[700]!,
+                 ),
+                 CalculatorButton(
+                   text: '⌫',
+                   onPressed: (_) => _onBackspace(),
+                   color: Colors.orange,
+                 ),
+                 
+                 // Decimal and Switch
+                 CalculatorButton(
+                   text: '.',
+                   onPressed: (_) => _onDecimal(),
+                   color: Colors.grey[700]!,
+                 ),
+                 CalculatorButton(
+                   text: 'SW',
+                   icon: Icons.calculate,
+                   onPressed: (_) async {
                     final choice = await showModalBottomSheet<String>(
                       context: context,
                       backgroundColor: Colors.grey[900],

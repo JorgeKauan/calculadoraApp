@@ -23,14 +23,14 @@ class CalculatorButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(20),
       ),
       onPressed: () => onPressed(text),
       child: icon == null
           ? Text(
               text,
               style: const TextStyle(
-                fontSize: 20,
+                fontSize: 24,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
@@ -38,7 +38,7 @@ class CalculatorButton extends StatelessWidget {
           : Icon(
               icon,
               color: Colors.white,
-              size: 24,
+              size: 28,
             ),
     );
   }
